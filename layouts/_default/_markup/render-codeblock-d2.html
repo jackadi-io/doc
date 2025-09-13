@@ -1,0 +1,19 @@
+{{- $renderHookName := "d2" }}
+
+{{- $inner := trim .Inner "\n\r" }}
+{{- $position := .Position }}
+
+{{- $apiEndpoint := "http://127.0.0.1:1314/render" }}
+
+{{- $opts := dict "method" "post" "body" $inner }}
+{{- with try (resources.GetRemote $apiEndpoint $opts) }}
+  {{- with .Err }}
+    {{- errorf "The %q code block render hook was unable to get the remote diagram. See %s. %s" $renderHookName $position . }}
+  {{- else }}
+      <div style="width: 600px">
+    {{ .Value.Content | safeHTML }}
+      </div>
+  {{- end }}
+{{- else }}
+  {{- errorf "The %q code block render hook was unable to get the remote diagram. See %s" $renderHookName $position }}
+{{- end }}
