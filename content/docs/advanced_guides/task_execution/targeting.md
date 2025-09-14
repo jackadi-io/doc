@@ -97,3 +97,17 @@ jack run -q "specs.system.network.interfaces[0].status==up" network:configure
 {{< callout type="important" >}}
 Logic with Parentheses not implemented yet.
 {{< /callout >}}
+
+### 4. Target in a file
+
+You can import a list of target from a file (one agent per line).
+
+``` {filename="agent.txt"}
+agent1
+agent2
+agent3
+```
+
+```sh
+jack run -f ./agents.txt cmd:run "pwd"
+```

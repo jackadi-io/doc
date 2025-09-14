@@ -53,6 +53,10 @@ jack agents health
 
 ## Run a task
 
+{{< callout type="tips" >}}
+All targeting modes are documented [here](/docs/advanced_guides/task_execution/targeting/).
+{{< /callout >}}
+
 ```sh {filename="command"}
 jack run <agent> <collection:task> <arg1> <argN>
 ```
