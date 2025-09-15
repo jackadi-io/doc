@@ -98,7 +98,7 @@ jack run -q "specs.system.network.interfaces[0].status==up" network:configure
 Logic with Parentheses not implemented yet.
 {{< /callout >}}
 
-### 4. Target in a file
+### 4. Target from a file
 
 You can import a list of target from a file (one agent per line).
 
