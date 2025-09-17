@@ -96,3 +96,13 @@ jack run <agent> specs:get system-info
 # or get a specific field
 jack run <agent> specs:get system-info.distribution
 ```
+
+### Plugin size optimization
+
+If you deploy a large number of agents, reducing the size of a plugin binary can be beneficial for bandwidth usage and duration of plugin synchronization.
+
+We recommend using [UPX](https://upx.github.io/), which can shrink binaries by up to 70%:
+
+```sh
+upx --best --lzma ./my_plugin
+```

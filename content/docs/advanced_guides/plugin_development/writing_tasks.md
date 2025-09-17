@@ -132,7 +132,7 @@ func main() {
 
 {{% /details %}}
 
-## Specifications
+## Reference
 
 ### Options interface
 
