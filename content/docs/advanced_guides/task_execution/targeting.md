@@ -57,46 +57,66 @@ jack run -e "^(web|api)-server-[0-9]{2}$" example:task1
 
 The most advanced targeting method using hostname and/or specs:
 
-```sh
-# Exact match for a single hostname
+#### Exact match
+
+The operator for an exact match is `==`.
+
+```sh {filename="example"}
 jack run -q "id==hostname1" example:task1
 ```
 
-```sh
-# Query using specs
-jack run -q "id==hostname1" example:task1
-```
+#### List of agents
 
+The operator for a list is `==`. The elements in the list are separated by a comma.
 
-```sh
-# Match multiple hostnames (comma-separated)
+```sh {filename="example"}
 jack run -q "id==agent1,agent2" example:task1
 ```
 
-```sh
-# Match hostnames using glob pattern
-jack run -q "id=~agent1*" example:task1
+#### Glob pattern
+
+The operator for a glob pattern is `=~`.
+
+```sh {filename="example"}
+jack run -q "id=~agent*" example:task1
 ```
 
-```sh
-# Combine conditions with logical operators
+#### Regex pattern
+
+The operator for regex filtering is `=~`, followed by `/your_regex/`.
+
+```sh {filename="example"}
+jack run -q "id=~/^agent.*$/" example:task1
+```
+
+#### Logical operators
+
+You can combine multiple filters together using `AND` and `OR`.
+
+The order of execution follows standard binary/mathematical logic: `AND` operations are processed before `OR`.
+
+```sh {filename="example"}
 jack run -q "id==agent1 AND specs.dev.hardware.Vendor==Lenovo" example:task1
 jack run -q "id==agent1 OR specs.dev.hardware.Type==Laptop" example:task1
 ```
 
+{{< callout type="important" >}}
+Logic with parentheses is not implemented yet.
+{{< /callout >}}
+
+#### Using nested spec
+
+When the used spec is nested, like a map or a struct, you can access to a specific leaf using `.`.
+
 ```sh
-# Using nested spec
 jack run -q "specs.system.os.kernel.version=~'6.17.*'" kernel-specific:task
 ```
 
+You can also access to an element of a list:
+
 ```sh
-# Accessing spec Array element access
 jack run -q "specs.system.network.interfaces[0].status==up" network:configure
 ```
-
-{{< callout type="important" >}}
-Logic with Parentheses not implemented yet.
-{{< /callout >}}
 
 ### 4. Target from a file
 
