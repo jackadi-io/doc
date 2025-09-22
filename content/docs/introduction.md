@@ -17,7 +17,7 @@ Key principles:
 
 ## Features
 
-| Feature | Description |
+| | Description |
 |---------|-------------|
 | **Distributed Task Execution** | Execute tasks across multiple agents from a central manager. |
 | **Plugin System**              | Extend functionality through custom Go plugins. |
@@ -28,13 +28,11 @@ Key principles:
 
 ## Architecture
 
-In a nutshell:
-* Agents are connected to a manager via persistent bidirectional gRPC.
-* Simple plugin system:
-  * All tasks and specs collectors are pure Go functions.
-  * The plugin system is based on [hashicorp/go-plugin](https://github.com/hashicorp/go-plugin/).
-  * The SDK is simple and easy to use.
-* Tasks results are stored in a local [BadgerDB](https://github.com/hypermodeinc/badger).
+Agents are connected to a manager via persistent bidirectional gRPC connections.
+
+Jackadi features a simple plugin architecture where all tasks and specs collectors are implemented as pure Go functions. The plugin system is built on top of [hashicorp/go-plugin](https://github.com/hashicorp/go-plugin/), and is made intuitive using a simple and easy to use SDK.
+
+By default, all executed task are recorded in [BadgerDB](https://github.com/hypermodeinc/badger).
 
 ## Quick demo tour
 

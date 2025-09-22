@@ -5,7 +5,7 @@ weight: 2
 
 ## Linux packages (recommended)
 
-1. Download and install Jackadi. `.deb` and `.rpm` files are available in the [GitHub releases](https://github.com/jackadi-io/jackadi/releases).
+1. Download and install Jackadi. Installation files (`.deb` and `.rpm`) are available in the [GitHub releases](https://github.com/jackadi-io/jackadi/releases).
 2. Edit the configuration (see [Configuration](/docs/configuration) page).
 3. Start the service and ensure it is running:
 ```sh
@@ -21,7 +21,7 @@ systemctl status jackadi-agent
 ## Manual installation
 
 {{< callout type="warning" >}}
-You will need to manually create some directories to make it work (see [File Structure]({{<ref "#file-structure" >}}) section).
+To install Jackadi manually, you will need to manually create all the directories to make it work (see [File Structure]({{<ref "#file-structure" >}}) section to get the list of directories to create).
 {{< /callout >}}
 
 {{< callout type="tips" >}}
@@ -45,6 +45,8 @@ make build
 3. The three binaries can be found in `dist/` directory.
 
 ## File structure
+
+Once everything is installed, you should have the following directory layout:
 
 | Manager | Agent |
 |---------|-------|

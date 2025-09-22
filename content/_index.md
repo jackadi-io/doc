@@ -1,5 +1,6 @@
 ---
 layout: hextra-home
+description: Developer-first infrastructure automation and configuration — no DSL, just real code. Easy to use SDK. No lock-in.
 ---
 {{< hextra/hero-badge >}}
   <div class="hx:w-2 hx:h-2 hx:rounded-full hx:bg-primary-400"></div>
@@ -8,7 +9,7 @@ layout: hextra-home
 
 <div class="hx:mt-6 hx:mb-6">
 {{< hextra/hero-headline >}}
-  Developer-first<br/>infrastructure automation.
+  Developer-first <br/>infrastructure automation.
 {{< /hextra/hero-headline >}}
 </div>
 

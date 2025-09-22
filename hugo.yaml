@@ -35,7 +35,7 @@ markup:
 menu:
   main:
     - name: Documentation
-      pageRef: /docs/introduction
+      pageRef: /docs
       weight: 1
     - name: Search
       weight: 2
