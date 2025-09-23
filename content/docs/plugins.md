@@ -3,21 +3,19 @@ title: 'Plugins'
 weight: 4
 ---
 
-## Builtins
+## Built-ins
 
-Jackadi comes up with few builtins:
-* `cmd:`
-* `health:`
-* `plugins:`
-* `specs:`
+Jackadi comes up with few built-in plugins:
+* `cmd`: tasks to run shell commands.
+* `health`: tasks to check the health of an agent (ping).
+* `plugins`: manage and get info about plugins.
+* `specs`: list and get specs.
 
 More details can be found [here](/docs/advanced_guides/builtin_plugins).
 
 ## Creating a plugin
 
-{{< callout >}}
-A collection can serve both tasks and spec collectors.
-{{< /callout >}}
+A plugin can serve both tasks and spec collectors.
 
 ### Creating a task
 
@@ -29,7 +27,7 @@ It is a function having a simple signature:
 3. **Positional Arguments** (optional): Zero or more arguments for positional CLI parameters.
 4. **Return Values**: Always returns two values - a result of any serializable type and an error.
 
-Example of a plugin serving one collection which has one task:
+Example of a plugin serving one plugin which has one task:
 ```go {filename="demo.go"}
 package main
 
@@ -40,9 +38,9 @@ func Hello() (string, error){
 }
 
 func main() {
-	collection := sdk.New("demo")
-	collection.MustRegisterTask("hello", Hello).WithSummary("Simple hello world")
-	sdk.MustServe(collection)
+	plugin := sdk.New("demo")
+	plugin.MustRegisterTask("hello", Hello).WithSummary("Simple hello world")
+	sdk.MustServe(plugin)
 }
 ```
 
@@ -78,9 +76,9 @@ func SystemInfoCollector() (map[string]string, error){
 }
 
 func main() {
-	collection := sdk.New("demo")
-	collection.MustRegisterSpecCollector("system-info", SystemInfoCollector)
-	sdk.MustServe(collection)
+	plugin := sdk.New("demo")
+	plugin.MustRegisterSpecCollector("system-info", SystemInfoCollector)
+	sdk.MustServe(plugin)
 }
 ```
 

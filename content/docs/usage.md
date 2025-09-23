@@ -58,7 +58,7 @@ All targeting modes are documented [here](/docs/advanced_guides/task_execution/t
 {{< /callout >}}
 
 ```sh {filename="command"}
-jack run <agent> <collection:task> <arg1> <argN>
+jack run <agent> <plugin:task> <arg1> <argN>
 ```
 
 ### One target
@@ -230,10 +230,10 @@ agent1
     PluginVersion: v0.0.6
 ```
 
-### Print the help for a collection
+### Print the help for a plugin
 
 ```sh {filename="command"}
-jack run <agent> plugins:help <collection>
+jack run <agent> plugins:help <plugin>
 ```
 
 ```sh {filename="example"}
@@ -268,7 +268,7 @@ agent1
 ### Print the help for a task
 
 ```sh {filename="command"}
-jack run <agent> plugins:help <collection:task>
+jack run <agent> plugins:help <plugin:task>
 ```
 
 ```sh {filename="example"}

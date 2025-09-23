@@ -22,7 +22,7 @@ Key principles:
 | **Distributed Task Execution** | Execute tasks across multiple agents from a central manager. |
 | **Plugin System**              | Extend functionality through custom Go plugins. |
 | **Advanced Targeting**         | Target agents via list, glob, regex, advanced query. |
-| **Specs Collection**           | Gather and store system information from agents. |
+| **Specs Collectors**           | Gather and store system information from agents. |
 | **Security**                   | mTLS, agent acceptance workflow, protection against rogue agents. |
 | **Developer-Friendly**         | Tasks/specs are Go function registered with a simple SDK. |
 
@@ -75,7 +75,7 @@ func Hello(name string) (string, error) {
 }
 
 func main() {
-	tour := sdk.NewCollection("tour")
+	tour := sdk.New("tour")
 	tour.MustRegisterTask("hello", Hello).WithDescription("Greetings.")
 	sdk.MustServe(tour)
 }

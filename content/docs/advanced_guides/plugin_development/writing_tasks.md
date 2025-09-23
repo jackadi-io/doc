@@ -67,20 +67,20 @@ func GreetTask(ctx context.Context, options *GreetOptions, greeting string) (str
 ```
 4. Register a task and serve:
 ```go
-collection := sdk.New("my-plugin")
+plugin := sdk.New("my-plugin")
 
 // Basic registration
-collection.MustRegisterTask("task-name", MyTaskFunction)
+plugin.MustRegisterTask("task-name", MyTaskFunction)
 
 // With additional metadata
-collection.MustRegisterTask("advanced-task", MyAdvancedFunction).
+plugin.MustRegisterTask("advanced-task", MyAdvancedFunction).
 	WithSummary("Short summary").
 	WithLockMode(sdk.WriteLock).
 	WithDescription("Longer description of what the task does").
 	WithArg("argName", "argType", "defaultValue").
 	WithFlags(sdk.Deprecated) // Optional flags like Deprecated or NotImplemented
 
-sdk.MustServe(collection)
+sdk.MustServe(plugin)
 ```
 
 {{% details title="Full example" closed="true" %}}
@@ -112,20 +112,20 @@ func GreetTask(ctx context.Context, options *GreetOptions, greeting string) (str
 }
 
 func main() {
-	collection := sdk.New("my-plugin")
+	plugin := sdk.New("my-plugin")
 
 	// Basic registration
-	collection.MustRegisterTask("task-name", MyTaskFunction)
+	plugin.MustRegisterTask("task-name", MyTaskFunction)
 
 	// With additional metadata
-	collection.MustRegisterTask("advanced-task", MyAdvancedFunction).
+	plugin.MustRegisterTask("advanced-task", MyAdvancedFunction).
 			WithSummary("Short summary").
 			WithLockMode(sdk.WriteLock).
 			WithDescription("Longer description of what the task does").
 			WithArg("argName", "argType", "defaultValue").
 			WithFlags(sdk.Deprecated) // Optional flags like Deprecated or NotImplemented
 
-	sdk.MustServe(collection)
+	sdk.MustServe(plugin)
 }
 
 ```
@@ -178,9 +178,9 @@ func main() {
 	// ...
 
 	// This task reuse a task from an another plugin
-	collection.MustRegisterTask("ssl-setup", SetupSSL)
+	plugin.MustRegisterTask("ssl-setup", SetupSSL)
 	// You can also export the task from an another plugin directly
-	collection.MustRegisterTask("cert-alias", tasks.GenerateCert)
+	plugin.MustRegisterTask("cert-alias", tasks.GenerateCert)
 
 	// ...
 }
@@ -191,7 +191,7 @@ func main() {
 When registering tasks, you can use several fluent methods to configure task metadata and behavior:
 
 ```go
-collection.MustRegisterTask("my-task", MyTaskFunction).
+plugin.MustRegisterTask("my-task", MyTaskFunction).
     WithSummary("Short description of the task").
     WithDescription("Longer description explaining what the task does and how to use it").
     WithArg("filename", "string", "config.json").
@@ -238,11 +238,11 @@ Command: **`WithLockMode(lockMode LockMode)`**
 When registering tasks, you can specify a default lock mode that controls how tasks execute concurrently:
 
 ```go
-collection.MustRegisterTask("get-status", GetStatusTask).
+plugin.MustRegisterTask("get-status", GetStatusTask).
     WithLockMode(sdk.NoLock)
 ```
 
-* **`sdk.NoLock`**: Default for read-only operations, data collection, health checks.
+* **`sdk.NoLock`**: Default, useful for read-only operations.
 * **`sdk.WriteLock`**: For tasks that modify system state but can safely run alongside read-only tasks (single writer pattern).
 * **`sdk.ExclusiveLock`**: To be used carefully: usually for jackadi management tasks like plugin sync, it blocks every requests including specs refresh.
 

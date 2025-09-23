@@ -60,9 +60,9 @@ func SystemInfoCollector(ctx context.Context) (SystemInfo, error) {
 }
 
 func main() {
-	collection := sdk.New("system-info")
-	collection.MustRegisterSpecCollector("basic", SystemInfoCollector)
-	sdk.MustServe(collection)
+	plugin := sdk.New("system-info")
+	plugin.MustRegisterSpecCollector("basic", SystemInfoCollector)
+	sdk.MustServe(plugin)
 }
 ```
 
@@ -72,14 +72,14 @@ func main() {
 
 ```go
 func main() {
-	collection := sdk.New("infrastructure")
+	plugin := sdk.New("infrastructure")
 
 	// Register multiple collectors
-	collection.MustRegisterSpecCollector("system", SystemInfoCollector)
-	collection.MustRegisterSpecCollector("network", NetworkCollector)
-	collection.MustRegisterSpecCollector("docker", DockerStatsCollector)
+	plugin.MustRegisterSpecCollector("system", SystemInfoCollector)
+	plugin.MustRegisterSpecCollector("network", NetworkCollector)
+	plugin.MustRegisterSpecCollector("docker", DockerStatsCollector)
 
-	sdk.MustServe(collection)
+	sdk.MustServe(plugin)
 }
 ```
 

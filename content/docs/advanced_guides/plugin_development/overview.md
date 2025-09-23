@@ -65,19 +65,19 @@ func SystemInfoCollector(ctx context.Context) (map[string]interface{}, error) {
 }
 
 func main() {
-	// Create plugin collection
-	collection := sdk.New("my-plugin")
+	// Create plugin plugin
+	plugin := sdk.New("my-plugin")
 
 	// Register task
-	collection.MustRegisterTask("greet", GreetTask).
+	plugin.MustRegisterTask("greet", GreetTask).
 		WithSummary("Greets a person").
 		WithLockMode(sdk.NoLock)
 
 	// Register spec collector
-	collection.MustRegisterSpecCollector("system", SystemInfoCollector)
+	plugin.MustRegisterSpecCollector("system", SystemInfoCollector)
 
 	// Serve the plugin
-	sdk.MustServe(collection)
+	sdk.MustServe(plugin)
 }
 ```
 
@@ -180,5 +180,5 @@ func MyTask() (Result, error) {
 1. **Error Handling**: Return meaningful error messages.
 2. **Context Awareness**: Honor context cancellation.
 3. **Documentation**: Provide clear summaries and descriptions.
-4. **Naming**: Use descriptive names for collections and tasks.
+4. **Naming**: Use descriptive names.
 5. **Lock Modes**: Choose appropriate default lock modes.

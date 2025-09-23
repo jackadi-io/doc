@@ -3,13 +3,13 @@ title: 'Plugin management (plugins)'
 weight: 1
 ---
 
-The `plugins` plugin provides essential functionality for managing plugin collections on Jackadi agents.
+The `plugins` plugin provides essential functionality for managing plugins on Jackadi agents.
 
 ## Available tasks
 
 ### plugins:list
 
-List all available plugin collections on an agent.
+List all available plugins on an agent.
 
 #### Syntax
 ```sh

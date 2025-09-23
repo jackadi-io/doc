@@ -3,7 +3,7 @@ title: 'System specifications (specs)'
 weight: 4
 ---
 
-The `specs` plugin provides system specification collection and management for Jackadi agents.
+The `specs` plugin provides specs management for Jackadi agents.
 
 ## Available tasks
 
