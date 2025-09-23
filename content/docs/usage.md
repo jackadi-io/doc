@@ -190,6 +190,14 @@ agent1
 ```
 
 ### Install/update/remove plugins
+
+You can synchronize the plugins on the agent using, following `plugins.yaml` configuration on the manager.
+
+It will:
+* Add new plugins not installed on the agent.
+* Update existing plugins if necessary.
+* Remove unwanted plugins.
+
 ```sh {filename="command"}
 jack run <agent> plugins:sync
 ```
