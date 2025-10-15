@@ -16,7 +16,7 @@ Not recommenced for production.
 ```yaml {filename="/etc/jackadi/manager.yaml"}
 auto-accept-agent: true  # avoids having to accept agents manually
 mtls:
-  enabled: false  # in development, mTLS authentication can be skipped
+    enabled: false  # in development, mTLS authentication can be skipped
 ```
 
 **Minimal recommended configuration for production**
@@ -32,10 +32,10 @@ auto-accept-agent: false
 # mTLS is critical for production to both
 # authenticate and encrypt communication
 mtls:
-  enabled: true
-  key: "/etc/jackadi/certs/manager.key"
-  cert: "/etc/jackadi/certs/manager.crt"
-  agent-ca-cert: "/etc/jackadi/certs/ca.crt"
+    enabled: true
+    key: "/etc/jackadi/certs/manager.key"
+    cert: "/etc/jackadi/certs/manager.crt"
+    agent-ca-cert: "/etc/jackadi/certs/ca.crt"
 ```
   {{< /tab >}}
 
@@ -46,7 +46,7 @@ mtls:
 ```yaml {filename="/etc/jackadi/agent.yaml"}
 manager-address: "192.0.2.1"
 mtls:
-  enabled: false
+    enabled: false
 ```
 
 **Minimal recommended configuration for production**
@@ -57,10 +57,10 @@ manager-address: "192.0.2.1"
 # mTLS is critical for production to both
 # authenticate and encrypt communication
 mtls:
-  enabled: true
-  key: "/etc/jackadi/certs/agent.key"
-  cert: "/etc/jackadi/certs/agent.crt"
-  manager-ca-cert: "/etc/jackadi/certs/ca.crt"
+    enabled: true
+    key: "/etc/jackadi/certs/agent.key"
+    cert: "/etc/jackadi/certs/agent.crt"
+    manager-ca-cert: "/etc/jackadi/certs/ca.crt"
 ```
   {{< /tab >}}
 {{< /tabs >}}
