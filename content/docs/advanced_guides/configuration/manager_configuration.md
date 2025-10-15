@@ -33,15 +33,16 @@ plugin-dir: "/opt/jackadi/plugins"
 auto-accept-agent: false
 
 # Security settings (mTLS)
-mtls: true
-mtls-key: "/etc/jackadi/certs/manager.key"
-mtls-cert: "/etc/jackadi/certs/manager.crt"
-mtls-agent-ca-cert: "/etc/jackadi/certs/ca.crt"
+mtls:
+  enabled: true
+  key: "/etc/jackadi/certs/manager.key"
+  cert: "/etc/jackadi/certs/manager.crt"
+  agent-ca-cert: "/etc/jackadi/certs/ca.crt"
 ```
 
 ## Environment variables
 
-All configuration options can be set via environment variables using the prefix `JACKADI_MANAGER_` and converting kebab-case to UPPER_SNAKE_CASE:
+All configuration options can be set via environment variables using the prefix `JACKADI_MANAGER_` and converting to UPPER_SNAKE_CASE:
 
 ```sh
 # Network configuration
@@ -50,7 +51,10 @@ export JACKADI_MANAGER_PORT="40080"
 export JACKADI_MANAGER_PLUGIN_SERVER_PORT="40081"
 
 # Security settings
-export JACKADI_MANAGER_MTLS="true"
+export JACKADI_MANAGER_MTLS_ENABLED="true"
+export JACKADI_MANAGER_MTLS_KEY="/etc/jackadi/certs/manager.key"
+export JACKADI_MANAGER_MTLS_CERT="/etc/jackadi/certs/manager.crt"
+export JACKADI_MANAGER_MTLS_AGENT_CA_CERT="/etc/jackadi/certs/ca.crt"
 export JACKADI_MANAGER_AUTO_ACCEPT_AGENT="false"
 
 # Directory paths
@@ -74,10 +78,10 @@ manager [OPTIONS]
 | `--plugin-dir` | /opt/jackadi/plugins | Plugin inventory directory |
 | `--plugin-server-port` | 40081 | Port used to serve plugins |
 | `--auto-accept-agent` | false | Auto-accept new agent connections |
-| `--mtls` | true | Secure connections using mTLS |
-| `--mtls-key` | | Manager TLS key filepath |
-| `--mtls-cert` | | Manager TLS certificate filepath |
-| `--mtls-agent-ca-cert` | | Agent CA certificate filepath |
+| `--mtls.enabled` | true | Secure connections using mTLS |
+| `--mtls.key` | | Manager TLS key filepath |
+| `--mtls.cert` | | Manager TLS certificate filepath |
+| `--mtls.agent-ca-cert` | | Agent CA certificate filepath |
 | `--config` | | Configuration file path |
 | `--version, -v` | | Print version information |
 

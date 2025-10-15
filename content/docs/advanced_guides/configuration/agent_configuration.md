@@ -33,10 +33,11 @@ plugin-dir: "/var/lib/jackadi/plugins"
 plugin-server-port: "40081"
 
 # Security settings (mTLS)
-mtls: true
-mtls-key: "/etc/jackadi/certs/agent.key"
-mtls-cert: "/etc/jackadi/certs/agent.crt"
-mtls-manager-ca-cert: "/etc/jackadi/certs/ca.crt"
+mtls:
+  enabled: true
+  key: "/etc/jackadi/certs/agent.key"
+  cert: "/etc/jackadi/certs/agent.crt"
+  manager-ca-cert: "/etc/jackadi/certs/ca.crt"
 
 # Custom DNS resolvers (optional)
 custom-resolvers:
@@ -46,7 +47,7 @@ custom-resolvers:
 
 ## Environment variables
 
-All configuration options can be set via environment variables using the prefix `JACKADI_AGENT_` and converting kebab-case to UPPER_SNAKE_CASE:
+All configuration options can be set via environment variables using the prefix `JACKADI_AGENT_` and converting to UPPER_SNAKE_CASE:
 
 ```sh
 # Agent identification
@@ -55,20 +56,20 @@ export JACKADI_AGENT_AGENT_ID="prod-web-01"
 # Manager connection
 export JACKADI_AGENT_MANAGER_ADDRESS="manager.company.com"
 export JACKADI_AGENT_MANAGER_PORT="40080"
+export JACKADI_AGENT_RECONNECT_DELAY="5"
 
 # Plugin configuration
 export JACKADI_AGENT_PLUGIN_DIR="/opt/agent/plugins"
 export JACKADI_AGENT_PLUGIN_SERVER_PORT="40081"
 
 # Security
-export JACKADI_AGENT_MTLS="true"
+export JACKADI_AGENT_MTLS_ENABLED="true"
 export JACKADI_AGENT_MTLS_KEY="/etc/jackadi/certs/agent.key"
 export JACKADI_AGENT_MTLS_CERT="/etc/jackadi/certs/agent.crt"
 export JACKADI_AGENT_MTLS_MANAGER_CA_CERT="/etc/jackadi/certs/ca.crt"
 
 # Network (optional)
 export JACKADI_AGENT_CUSTOM_RESOLVERS="10.0.1.100:53,10.0.1.101:53"
-export JACKADI_AGENT_RECONNECT_DELAY="5"
 ```
 
 **Container deployment example:**
@@ -77,7 +78,7 @@ export JACKADI_AGENT_RECONNECT_DELAY="5"
 docker run -d \
   -e JACKADI_AGENT_AGENT_ID="container-agent-$(hostname)" \
   -e JACKADI_AGENT_MANAGER_ADDRESS="manager.internal" \
-  -e JACKADI_AGENT_MTLS="true" \
+  -e JACKADI_AGENT_MTLS_ENABLED="true" \
   -v /etc/jackadi/certs:/certs:ro \
   jackadi/agent
 ```
@@ -98,11 +99,11 @@ agent [OPTIONS]
 | `--reconnect-delay` | 10 | Delay in seconds between reconnection attempts |
 | `--plugin-dir` | /var/lib/jackadi/plugins | Directory for plugins |
 | `--plugin-server-port` | 40081 | Port for plugin server |
-| `--mtls` | true | Use mTLS for secure connection |
-| `--mtls-key` | | Agent TLS key filepath |
-| `--mtls-cert` | | Agent TLS certificate filepath |
-| `--mtls-manager-ca-cert` | | Manager CA certificate filepath |
 | `--custom-resolvers` | | Custom DNS resolvers for GRPC connections (comma-separated) |
+| `--mtls.enabled` | true | Use mTLS for secure connection |
+| `--mtls.key` | | Agent TLS key filepath |
+| `--mtls.cert` | | Agent TLS certificate filepath |
+| `--mtls.manager-ca-cert` | | Manager CA certificate filepath |
 | `--config` | | Configuration file path |
 | `--version, -v` | | Print version information |
 
@@ -121,4 +122,3 @@ custom-resolvers:
   - "192.0.2.1:53"
   - "192.0.2.2:53"
 ```
-
