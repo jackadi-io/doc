@@ -44,39 +44,35 @@ make build
 ```
 3. The three binaries can be found in `dist/` directory.
 
-## File structure
+## Directory and files
 
 Once everything is installed, you should have the following directory layout:
 
-| Manager | Agent |
-|---------|-------|
-| {{< filetree/container >}}
-  {{< filetree/folder name="/etc/jackadi" >}}
-    {{< filetree/file name="manager.yaml" >}}
-    {{< filetree/file name="plugins.yaml" >}}
-    {{< filetree/file name="registry.json" >}}
-    {{< filetree/folder name="tls" >}}{{< /filetree/folder >}}
-  {{< /filetree/folder >}}
-  {{< filetree/folder name="/var/lib/jackadi" >}}
-    {{< filetree/folder name="database" >}}{{< /filetree/folder >}}
-  {{< /filetree/folder >}}
-    {{< filetree/folder name="/opt/jackadi" >}}
-      {{< filetree/folder name="plugins" >}}
-      {{< filetree/file name="plugin1" >}}
-      {{< filetree/file name="plugin2" >}}
-    {{< /filetree/folder >}}
-  {{< /filetree/folder >}}
-{{< /filetree/container >}} | {{< filetree/container >}}
-  {{< filetree/folder name="/etc/jackadi" >}}
-    {{< filetree/file name="agent.yaml" >}}
-    {{< filetree/folder name="tls" >}}{{< /filetree/folder >}}
-  {{< /filetree/folder >}}
-  {{< filetree/folder name="/var/lib/jackadi" >}}
-    {{< filetree/folder name="database" >}}{{< /filetree/folder >}}
-      {{< filetree/folder name="plugins" >}}
-      {{< filetree/file name="plugin1" >}}
-      {{< filetree/file name="plugin2" >}}
-    {{< /filetree/folder >}}
-  {{< /filetree/folder >}}
-{{< /filetree/container >}}
-|
+``` {filename="manager"}
+/etc/jackadi/
+└── manager.yaml
+└── plugins.yaml
+└── registry.json
+└── tls/
+
+/var/lib/jackadi/
+└── database/
+
+/opt/jackadi/
+└── plugins/
+    └── plugin1
+    └── plugin2
+```
+
+``` {filename="agent"}
+/etc/jackadi/
+└── agent.yaml
+
+/var/lib/jackadi/
+└── database/
+
+/opt/jackadi/
+└── plugins/
+    └── plugin1
+    └── plugin2
+```

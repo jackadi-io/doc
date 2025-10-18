@@ -131,3 +131,7 @@ agent3
 ```sh
 jack run -f ./agents.txt cmd:run "pwd"
 ```
+
+## Execute plugins as standalone binaries
+
+Plugins can be executed directly from the terminal without Jackadi, see [Standalone executable](/docs/advanced_guides/plugin_development/standalone_executable).

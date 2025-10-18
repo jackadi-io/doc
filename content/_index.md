@@ -29,8 +29,8 @@ description: Developer-first infrastructure automation and configuration — no 
   {{< hextra/feature-card class="jackadi_card" title="Distributed Execution" subtitle="Run tasks across multiple agents from one manager.<br />Collect and store agent system information." >}}
   {{< hextra/feature-card class="jackadi_card" title="Pure Go Approach" subtitle="Write tasks as Go code with no hidden behaviors.<br/>No runtime dependencies hell." >}}
   {{< hextra/feature-card class="jackadi_card" title="Plugin System" subtitle="Tasks and specs are simple plugins." >}}
-  {{< hextra/feature-card class="jackadi_card" title="Easy to use SDK" subtitle="Register tasks and specs with simple Go functions.<br/>Natural task writing.<br/>minimal framework knowledge needed." >}}
-  {{< hextra/feature-card class="jackadi_card" title="No lock-in" subtitle="With Jackadi, you keep full freedom: you can easily reuse your plugins with another framework, no lock-in." >}}
+  {{< hextra/feature-card class="jackadi_card" title="Easy to use SDK" subtitle="Register tasks and specs with simple Go functions.<br/>Natural task writing.<br/>Minimal framework knowledge needed." >}}
+  {{< hextra/feature-card class="jackadi_card" title="No lock-in" subtitle="Keep full freedom: you can easily reuse your plugins with another framework, as libraries or standalone executables.">}}
   {{< hextra/feature-card class="jackadi_card" title="Advanced Targeting" subtitle="Target agents via list, glob, regex, queries or from file." >}}
 {{< /hextra/feature-grid >}}
 

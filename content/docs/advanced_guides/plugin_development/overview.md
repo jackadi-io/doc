@@ -160,6 +160,29 @@ All plugin binaries can be run manually with flags. The plugin won’t start, bu
 # Output: List of tasks with summaries and options
 ```
 
+### Execute plugin as a standalone binary
+
+You can execute plugins as standalone binary directly from the shell.
+
+The syntax is similar to `jack` command:
+
+```sh {filename="simple task"}
+./my-plugin run task hello
+"Hello, World! This is Jackadi distributed task execution."
+```
+
+More details can be found in [standalone executable](../standalone_executable).
+
+### Jackadi tag
+
+Similar to `json` tag, `jackadi` tag enables you to define an alias for a key.
+
+It is supported for:
+- `Options` input
+- any output structure of your tasks
+
+More details can be found in [tags](../tags).
+
 ### Cross-plugin usage
 
 Direct cross-calling is not possible. Instead, if you want to create a workflow with tasks from another plugin, just import it as a library.

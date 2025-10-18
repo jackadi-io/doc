@@ -14,13 +14,14 @@ Key principles:
 * **No Runtime Dependencies**: Tasks have no runtime dependencies on other tasks; all dependencies are resolved at compile-time.
 * **No Abstractions**: Task writing is natural for Go developers with minimal framework-specific knowledge needed.
 * **Flexible Use Cases**: From simple package installation to complex workflows like server management and upgrades.
+* **No locking**: Plugins are libraries which can be imported from any other program. They are standalone binaries, meaning they can be executed directly from the shell.
 
 ## Features
 
 | | Description |
 |---------|-------------|
 | **Distributed Task Execution** | Execute tasks across multiple agents from a central manager. |
-| **Plugin System**              | Extend functionality through custom Go plugins. |
+| **Plugin System**              | Extend functionality through custom Go plugins.<br>Bonus: a plugin can be executed as a standalone binary. |
 | **Advanced Targeting**         | Target agents via list, glob, regex, advanced query. |
 | **Specs Collectors**           | Gather and store system information from agents. |
 | **Security**                   | mTLS, agent acceptance workflow, protection against rogue agents. |

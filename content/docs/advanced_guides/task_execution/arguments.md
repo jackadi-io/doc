@@ -33,7 +33,7 @@ This passes:
 - `name` with value `"John"`
 - `age` with value `30`
 
-These key-value pairs are passed to the task argument implementing `sdk.Option`. See more details [here](../plugin_developement/writing_tasks).
+These key-value pairs are passed to the task argument implementing `sdk.Option`. See more details [here](/docs/advanced_guides/plugin_developement/writing_tasks).
 
 ### Mixed arguments
 
