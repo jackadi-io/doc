@@ -26,8 +26,11 @@ Key principles:
 | **Specs Collectors**           | Gather and store system information from agents. |
 | **Security**                   | mTLS, agent acceptance workflow, protection against rogue agents. |
 | **Developer-Friendly**         | Tasks/specs are Go function registered with a simple SDK. |
+| **Web API	Integrate**          | Jackadi with your infrastructure stack. |
 
 ## Architecture
+
+<img src="/images/jackadi-overview.svg" />
 
 Agents are connected to a manager via persistent bidirectional gRPC connections.
 
@@ -94,6 +97,11 @@ Copy the file in the manager `/opt/jackadi/plugins` directory.
 #### Synchronize the plugin to the agent
 ```sh
 jack run agent1 plugins:sync
+```
+
+#### Run the plugin
+```sh
+jack run agent1 tour:hello
 ```
 
 {{% /steps %}}

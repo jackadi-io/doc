@@ -16,6 +16,7 @@ description: Developer-first infrastructure automation and configuration — no 
 <div class="hx:mb-12">
 {{< hextra/hero-subtitle >}}
   No DSL, just real code.
+  <br/>Agent based.
 {{< /hextra/hero-subtitle >}}
 </div>
 
@@ -33,5 +34,3 @@ description: Developer-first infrastructure automation and configuration — no 
   {{< hextra/feature-card class="jackadi_card" title="No lock-in" subtitle="Keep full freedom: you can easily reuse your plugins with another framework, as libraries or standalone executables.">}}
   {{< hextra/feature-card class="jackadi_card" title="Advanced Targeting" subtitle="Target agents via list, glob, regex, queries or from file." >}}
 {{< /hextra/feature-grid >}}
-
-
