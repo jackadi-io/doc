@@ -11,7 +11,7 @@ toc: false
 
 This minimal configuration can be used to ease testing in lab.
 
-Not recommenced for production.
+Not recommended for production.
 
 ```yaml {filename="/etc/jackadi/manager.yaml"}
 auto-accept-agent: true  # avoids having to accept agents manually

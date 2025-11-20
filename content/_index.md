@@ -24,6 +24,12 @@ description: Developer-first infrastructure automation and configuration — no 
 {{< hextra/hero-button text="Get Started" link="docs" >}}
 </div>
 
+> [!WARNING]  
+> Jackadi is currently in an alpha state and is provided with no guarantees or warranties.<br/>
+> You're welcome to try it out and give feedback.<br/>
+>
+> But, it must not be used in production or in any environment where reliability, security, or data integrity are required.
+
 <div class="hx:mt-6"></div>
 
 {{< hextra/feature-grid cols="3" >}}
