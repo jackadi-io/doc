@@ -12,7 +12,7 @@ weight: 1
 
 ## What is Jackadi?
 
-Jackadi is a developer-first distributed task execution platform designed for developers with a plugin system architecture consisting of a manager and agents.
+Jackadi is a developer-first distributed task execution platform designed for developers with a plugin system. Jackadi is client/server based.
 
 The main motivation is to create a framework where developers write tasks as pure code without abstractions or hidden behaviors. Task writing is meant to be natural and direct.
 
@@ -27,11 +27,11 @@ Key principles:
 
 | | Description |
 |---------|-------------|
-| **Distributed Task Execution** | Execute tasks across multiple agents from a central manager. |
+| **Distributed Task Execution** | Execute tasks across multiple nodes from a central manager. |
 | **Plugin System**              | Extend functionality through custom Go plugins.<br>Bonus: a plugin can be executed as a standalone binary. |
-| **Advanced Targeting**         | Target agents via list, glob, regex, advanced query. |
-| **Specs Collectors**           | Gather and store system information from agents. |
-| **Security**                   | mTLS, agent acceptance workflow, protection against rogue agents. |
+| **Advanced Targeting**         | Target nodes via list, glob, regex, advanced query. |
+| **Specs Collectors**           | Gather and store system information from nodes. |
+| **Security**                   | mTLS, node acceptance workflow, protection against rogue nodes. |
 | **Developer-Friendly**         | Tasks/specs are Go function registered with a simple SDK. |
 | **Web API	Integrate**          | Jackadi with your infrastructure stack. |
 
@@ -39,7 +39,7 @@ Key principles:
 
 <img src="/images/jackadi-overview.svg" />
 
-Agents are connected to a manager via persistent bidirectional gRPC connections.
+Agents are Jackadi clients installed on the nodes. They are connected to a manager via persistent bidirectional gRPC connections.
 
 Jackadi features a simple plugin architecture where all tasks and specs collectors are implemented as pure Go functions. The plugin system is built on top of [hashicorp/go-plugin](https://github.com/hashicorp/go-plugin/), and is made intuitive using a simple and easy to use SDK.
 
