@@ -4,11 +4,9 @@ weight: 1
 ---
 
 > [!WARNING]  
-> Jackadi is currently in an alpha state and is provided with no guarantees or warranties.
+> Jackadi is currently in an alpha.
 >
 > You're welcome to try it out and give feedback.
->
-> But, it must not be used in production or in any environment where reliability, security, or data integrity are required.
 
 ## What is Jackadi?
 

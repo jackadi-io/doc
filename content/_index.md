@@ -25,10 +25,8 @@ description: Developer-first infrastructure automation and configuration — no 
 </div>
 
 > [!WARNING]  
-> Jackadi is currently in an alpha state and is provided with no guarantees or warranties.<br/>
+> Jackadi is currently in an alpha state.<br/>
 > You're welcome to try it out and give feedback.<br/>
->
-> But, it must not be used in production or in any environment where reliability, security, or data integrity are required.
 
 <div class="hx:mt-6"></div>
 
