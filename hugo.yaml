@@ -1,5 +1,5 @@
 baseURL: https://jackadi.io/
-languageCode: en-us
+locale: en-us
 title: Jackadi
 
 caches:
@@ -23,7 +23,7 @@ params:
       enable: false
   footer:
     displayCopyright: true
-    displayPoweredBy: false
+    displayPoweredBy: true
 markup:
   # allow raw html
   goldmark:
