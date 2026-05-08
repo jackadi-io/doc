@@ -7,7 +7,7 @@ weight: 10
 
 Before installing Jackadi, ensure you have:
 * A supported operating system (Linux, macOS, Windows).
-* Network connectivity between manager and agents.
+* Network connectivity between manager and nodes.
 * Appropriate permissions to install binaries and create directories.
 
 ## Installing binaries
@@ -23,7 +23,7 @@ Download the appropriate binaries for your platform from the releases page:
 ```sh
 # Example for Linux amd64
 tar xzf jackadi_linux_amd64.tar.gz
-sudo mv manager agent jack /usr/local/bin/
+sudo mv manager node jack /usr/local/bin/
 ```
 
 ### Verifying installation
@@ -33,7 +33,7 @@ After installation, verify the components are working:
 ```sh
 # Check versions
 manager --version
-agent --version
+node --version
 jack --version
 
 # Verify help is available
@@ -54,7 +54,7 @@ make build
 
 # Alternatively, build them individually
 go build -o manager ./cmd/manager
-go build -o agent ./cmd/agent
+go build -o node ./cmd/node
 go build -o jack ./cmd/jack
 ```
 
@@ -69,7 +69,7 @@ Jackadi uses several directories for configuration, plugins, and data:
 * `/opt/jackadi/plugins/` - Plugin binaries
 * `/var/lib/jackadi/` - Data and state
 
-**Agent directories:**
+**Node directories:**
 * `/etc/jackadi/` - Configuration files
 * `/var/lib/jackadi/plugins/` - Downloaded plugins
 * `/var/log/jackadi/` - Log files
@@ -105,11 +105,11 @@ openssl req -new -key manager.key -out manager.csr
 openssl x509 -req -days 365 -in manager.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out manager.crt
 ```
 
-3. Generate Agent Certificate
+3. Generate Node Certificate
 ```sh
-openssl genrsa -out agent.key 4096
-openssl req -new -key agent.key -out agent.csr
-openssl x509 -req -days 365 -in agent.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out agent.crt
+openssl genrsa -out node.key 4096
+openssl req -new -key node.key -out node.csr
+openssl x509 -req -days 365 -in node.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out node.crt
 ```
 
 ### Certificate distribution
@@ -120,8 +120,8 @@ After generating certificates, distribute them to appropriate systems:
 # Copy certificates to manager system
 sudo cp ca.crt manager.crt manager.key /etc/jackadi/certs/
 
-# Copy certificates to agent systems
-sudo cp ca.crt agent.crt agent.key /etc/jackadi/certs/
+# Copy certificates to node systems
+sudo cp ca.crt node.crt node.key /etc/jackadi/certs/
 
 # Set proper permissions
 sudo chmod 600 /etc/jackadi/certs/*.key
@@ -163,16 +163,16 @@ RestartSec=10
 WantedBy=multi-user.target
 ```
 
-**Agent service (`/etc/systemd/system/jackadi-agent.service`):**
+**Node service (`/etc/systemd/system/jackadi-node.service`):**
 ```ini
 [Unit]
-Description=Jackadi Agent
+Description=Jackadi Node
 After=network.target
 
 [Service]
 Type=simple
 User=jackadi
-ExecStart=/usr/local/bin/agent --config /etc/jackadi/agent.yaml
+ExecStart=/usr/local/bin/node --config /etc/jackadi/node.yaml
 Restart=always
 RestartSec=10
 
@@ -182,8 +182,8 @@ WantedBy=multi-user.target
 
 Enable and start services:
 ```sh
-sudo systemctl enable jackadi-manager jackadi-agent
-sudo systemctl start jackadi-manager jackadi-agent
+sudo systemctl enable jackadi-manager jackadi-node
+sudo systemctl start jackadi-manager jackadi-node
 ```
 
 ### 3. Verify installation
@@ -192,8 +192,8 @@ Test basic connectivity:
 
 ```sh
 # Test CLI connectivity
-jack agent list
+jack node list
 
 # Test basic task execution
-jack run agent-name health:ping
+jack run node-name health.ping
 ```

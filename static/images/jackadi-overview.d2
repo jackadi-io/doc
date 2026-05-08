@@ -31,20 +31,20 @@ managerNode: "Central server" {
 
 
 target1: "Node 1" {
-  agent: "Agent" {
+  node: "Node" {
     plugin1: Plugin 1
     plugin2: Plugin 2
   }
 }
 
 target2: "Node 2" {
-  agent: "Agent" {
+  node: "Node" {
     plugin1: Plugin 1
   }
 }
 
 target3: "Node 3" {
-  agent: "Agent" {
+  node: "Node" {
     plugin1: Plugin 1
     plugin2: Plugin 2
     plugin3: Plugin 3
@@ -52,6 +52,6 @@ target3: "Node 3" {
 }
 
 user -> managerNode.api: "HTTP" { style.fill: "#ffffff"}
-managerNode.manager <-> target1.agent: bidirectional\ngRPC (mTLS)  { style.fill: "#ffffff"}
-managerNode.manager <-> target2.agent: bidirectional\ngRPC (mTLS)  { style.fill: "#ffffff"}
-managerNode.manager <-> target3.agent: bidirectional\ngRPC (mTLS)  { style.fill: "#ffffff"}
+managerNode.manager <-> target1.node: bidirectional\ngRPC (mTLS)  { style.fill: "#ffffff"}
+managerNode.manager <-> target2.node: bidirectional\ngRPC (mTLS)  { style.fill: "#ffffff"}
+managerNode.manager <-> target3.node: bidirectional\ngRPC (mTLS)  { style.fill: "#ffffff"}

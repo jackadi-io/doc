@@ -6,23 +6,23 @@ weight: 1
 ## What are plugins?
 
 Plugins extend Jackadi's functionality by providing two main capabilities:
-1. **Tasks**: Executable functions that agents can run on demand.
+1. **Tasks**: Executable functions that nodes can run on demand.
 2. **Specs**: Automatic system information collectors that run continuously.
 
 This overview covers the core concepts and structure. For detailed implementation guides, see [Writing Tasks](../writing_tasks/) and [Writing Spec Collectors](../writing_specs/).
 
 ## Plugin architecture
 
-A Jackadi plugin is a Go binary that uses the SDK to register functionality with agents. Each plugin can provide multiple tasks and spec collectors.
+A Jackadi plugin is a Go binary that uses the SDK to register functionality with nodes. Each plugin can provide multiple tasks and spec collectors.
 
-Plugins are running in their own processes and communicate with the agent using gRPC, thanks to [hashicorp/go-plugin](https://github.com/hashicorp/go-plugin/).
+Plugins are running in their own processes and communicate with the node using gRPC, thanks to [hashicorp/go-plugin](https://github.com/hashicorp/go-plugin/).
 
 ### Task naming convention
 
 Tasks follow the format `plugin:task`:
 * `cmd:run` - The `run` task from the `cmd` plugin.
 * `health:ping` - The `ping` task from the `health` plugin.
-* `specs:get` - The `get` task from the `specs` plugin.
+* `specs.get` - The `get` task from the `specs` plugin.
 
 ## Basic plugin structure
 
@@ -85,7 +85,7 @@ func main() {
 
 ### Tasks
 
-Tasks are functions that can be invoked on agents via CLI or API*. They support:
+Tasks are functions that can be invoked on nodes via CLI or API*. They support:
 * Optional context parameter for cancellation.
 * Optional options struct for configuration.
 * Positional arguments.
@@ -124,23 +124,23 @@ CGO_ENABLED=0 go build -o my-plugin main.go
 1. Place binary in manager's plugin directory
 2. Configure distribution in `plugins.yaml`:
    ```yaml
-   "*":                # All agents
+   "*":                # All nodes
      - my-plugin
-   "worker-*":         # Pattern-matched agents
+   "worker-*":         # Pattern-matched nodes
      - worker-plugin
    ```
-3. Sync to agents:
+3. Sync to nodes:
    ```sh
-   jack run agent1 plugins:sync
+   jack run node1 plugins.sync
    ```
 
 ### Using
 ```sh
 # Execute task with options
-jack run agent1 my-plugin:greet --name="World" "Hello"
+jack run node1 my-plugin.greet --name="World" "Hello"
 
 # Query spec data
-jack run agent1 specs:get my-plugin.system.os
+jack run node1 specs.get my-plugin.system.os
 ```
 
 ## Built-in plugin features

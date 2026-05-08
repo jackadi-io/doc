@@ -12,10 +12,10 @@ TODO: manage multiple version of a same plugin (using filenames, like demo-v0.0.
 The plugin synchronization process in Jackadi follows this workflow:
 
 1. Plugins are placed in the manager's plugin directory.
-2. The manager maintains a configuration defining which agents should receive which plugins.
-3. Agents request their plugin list from the manager.
-4. The manager responds based on the agent's identity and configured patterns.
-5. Agents download, install, and load the required plugins.
+2. The manager maintains a configuration defining which nodes should receive which plugins.
+3. Nodes request their plugin list from the manager.
+4. The manager responds based on the node's identity and configured patterns.
+5. Nodes download, install, and load the required plugins.
 
 ## Manager Configuration
 
@@ -27,11 +27,11 @@ The manager looks for plugins in its configured plugin directory:
 manager --plugin-dir=/path/to/plugins
 ```
 
-All plugins binaries in this directory are available for distribution to agents.
+All plugins binaries in this directory are available for distribution to nodes.
 
 ### Plugin configuration
 
-The manager uses a YAML configuration file located at `<config-dir>/plugins.yaml` to determine which plugins to sync to which agents:
+The manager uses a YAML configuration file located at `<config-dir>/plugins.yaml` to determine which plugins to sync to which nodes:
 
 ```yaml
 "*":
@@ -40,9 +40,9 @@ The manager uses a YAML configuration file located at `<config-dir>/plugins.yaml
   - database-tools
 ```
 
-The configuration uses agent name patterns (with glob syntax) as keys and lists of plugin names as values.
+The configuration uses node name patterns (with glob syntax) as keys and lists of plugin names as values.
 
-## Agent plugin sync
+## Node plugin sync
 
 ### Automatic sync
 
@@ -52,20 +52,20 @@ Not yet implemented.
 
 ### Manual sync
 
-To manually trigger plugin synchronization on an agent:
+To manually trigger plugin synchronization on an node:
 
 ```sh
-jack run agent1 plugins:sync
+jack run node1 plugins.sync
 ```
 
 This sync is using by default an exclusive lock.
 
 ## Troubleshooting
 
-If a plugin isn't being loaded by an agent:
+If a plugin isn't being loaded by an node:
 
-1. Check if the agent matches any patterns in the `plugins.yaml` file.
+1. Check if the node matches any patterns in the `plugins.yaml` file.
 2. Verify the plugin binary exists in the manager's plugin directory.
-3. Check the agent logs for download or loading errors.
+3. Check the node logs for download or loading errors.
 4. Execute the plugin binary manually with `--describe` and check for any errors.
-5. Manually trigger a sync: `jack run agent1 plugins:sync`.
+5. Manually trigger a sync: `jack run node1 plugins.sync`.

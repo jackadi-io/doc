@@ -87,27 +87,27 @@ func main() {
 
 ```sh
 # List available specs
-jack run agent1 specs:list
+jack run node1 specs.list
 
 # Get all spec data
-jack run agent1 specs:all
+jack run node1 specs.all
 
 # Get specific data using dotted notation
-jack run agent1 specs:get infrastructure.system.cpu_cores
-jack run agent1 specs:get infrastructure.network.interfaces[0].ip_address
+jack run node1 specs.get infrastructure.system.cpu_cores
+jack run node1 specs.get infrastructure.network.interfaces[0].ip_address
 ```
 
 ### Targeting with specs
 
 ```sh
 # Target based on OS
-jack run -q "specs.infrastructure.system.os==linux" linux-task:run
+jack run -q "specs.infrastructure.system.os==linux" linux-task.run
 ```
 
 ## Best practices
 
 1. **Performance**: Keep collectors fast and lightweight.
-2. **Error Handling**: Handle errors gracefully without affecting agent stability.
+2. **Error Handling**: Handle errors gracefully without affecting node stability.
 3. **Caching**: Cache expensive operations with appropriate TTL.
 4. **Structure**: Design data for easy querying with dotted notation.
 5. **Naming**: Use consistent, descriptive naming conventions.

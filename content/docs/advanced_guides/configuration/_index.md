@@ -5,5 +5,5 @@ weight: 20
 
 {{< cards >}}
   {{< card link="manager_configuration" title="Manager Configuration" icon="server" >}}
-  {{< card link="agent_configuration" title="Agent Configuration" icon="user" >}}
+  {{< card link="node_configuration" title="Node Configuration" icon="user" >}}
 {{< /cards >}}

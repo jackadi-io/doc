@@ -29,15 +29,15 @@ plugin-server-port: "40081"
 config-dir: "/etc/jackadi"
 plugin-dir: "/opt/jackadi/plugins"
 
-# Agent management
-auto-accept-agent: false
+# Node management
+auto-accept-node: false
 
 # Security settings (mTLS)
 mtls:
   enabled: true
   key: "/etc/jackadi/certs/manager.key"
   cert: "/etc/jackadi/certs/manager.crt"
-  agent-ca-cert: "/etc/jackadi/certs/ca.crt"
+  node-ca-cert: "/etc/jackadi/certs/ca.crt"
 ```
 
 ## Environment variables
@@ -54,8 +54,8 @@ export JACKADI_MANAGER_PLUGIN_SERVER_PORT="40081"
 export JACKADI_MANAGER_MTLS_ENABLED="true"
 export JACKADI_MANAGER_MTLS_KEY="/etc/jackadi/certs/manager.key"
 export JACKADI_MANAGER_MTLS_CERT="/etc/jackadi/certs/manager.crt"
-export JACKADI_MANAGER_MTLS_AGENT_CA_CERT="/etc/jackadi/certs/ca.crt"
-export JACKADI_MANAGER_AUTO_ACCEPT_AGENT="false"
+export JACKADI_MANAGER_MTLS_NODE_CA_CERT="/etc/jackadi/certs/ca.crt"
+export JACKADI_MANAGER_AUTO_ACCEPT_NODE="false"
 
 # Directory paths
 export JACKADI_MANAGER_CONFIG_DIR="/etc/jackadi"
@@ -77,17 +77,17 @@ manager [OPTIONS]
 | `--port` | 40080 | Manager listen port |
 | `--plugin-dir` | /opt/jackadi/plugins | Plugin inventory directory |
 | `--plugin-server-port` | 40081 | Port used to serve plugins |
-| `--auto-accept-agent` | false | Auto-accept new agent connections |
+| `--auto-accept-node` | false | Auto-accept new node connections |
 | `--mtls.enabled` | true | Secure connections using mTLS |
 | `--mtls.key` | | Manager TLS key filepath |
 | `--mtls.cert` | | Manager TLS certificate filepath |
-| `--mtls.agent-ca-cert` | | Agent CA certificate filepath |
+| `--mtls.node-ca-cert` | | Node CA certificate filepath |
 | `--config` | | Configuration file path |
 | `--version, -v` | | Print version information |
 
 ## Plugin sync configuration
 
-The manager uses a YAML configuration file located at `<config-dir>/plugins.yaml` to determine which plugins to sync to which agents. This enables fine-grained control over plugin distribution based on agent patterns.
+The manager uses a YAML configuration file located at `<config-dir>/plugins.yaml` to determine which plugins to sync to which nodes. This enables fine-grained control over plugin distribution based on node patterns.
 
 Basic plugin distribution ():
 ```yaml {filename="/etc/jackadi/plugins.yaml"}

@@ -8,7 +8,7 @@ weight: 2
 Tasks are the primary way to add executable functionality to Jackadi. Each task:
 * Can be triggered manually via the CLI or API*.
 * Has defined inputs/outputs.
-* Executes on agents.
+* Executes on nodes.
 * Can implement complex workflows (like setting up a webserver).
 * Can reuse or alias functions from other plugins.
 
@@ -249,10 +249,10 @@ plugin.MustRegisterTask("get-status", GetStatusTask).
 Users can always override your default lock mode via CLI:
 ```sh
 # Use plugin's default lock mode
-jack run agent1 my-plugin:update-config
+jack run node1 my-plugin.update-config
 
 # Override with exclusive lock
-jack run --lock-mode exclusive agent1 my-plugin:update-config
+jack run --lock-mode exclusive node1 my-plugin.update-config
 ```
 
 ## Best practices

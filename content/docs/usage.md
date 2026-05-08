@@ -3,53 +3,53 @@ title: 'Usage'
 weight: 5
 ---
 
-## Agent management
+## Node management
 
-### List agents
+### List nodes
 
 ```sh {filename="command"}
-jack agents list
+jack nodes list
 ```
 
 ```sh  {filename="output"}
  Accepted
- • agent1
- • agent3
+ • node1
+ • node3
 
  Candidates
- • agent2
+ • node2
 
  Rejected
- • agent1
+ • node1
 ```
 
-### Manage agents
+### Manage nodes
 
 ```sh {filename="command"}
-jack agents <accept|reject|remove> <agent>
+jack nodes <accept|reject|remove> <node>
 ```
 
 ```sh {filename="output"}
-$ jack agents accept agent2
+$ jack nodes accept node2
 ```
 
-### Agents health
+### Nodes health
 
 ```sh {filename="command"}
-jack agents health
+jack nodes health
 ```
 
 ```sh {filename="output"}
- Agents
+ Nodes
 
- • agent1 (connected, active)
- • agent2 (connected, inactive)
- • agent3 (disconnected, inactive)
+ • node1 (connected, active)
+ • node2 (connected, inactive)
+ • node3 (disconnected, inactive)
 ```
 
-* `agent1` is connected and had recent activity (e.g. a task has been executed).
-* `agent2` is connected and did not have any recent activity.
-* `agent3` is not connected to the manager anymore (e.g. due to service down, or network issue).
+* `node1` is connected and had recent activity (e.g. a task has been executed).
+* `node2` is connected and did not have any recent activity.
+* `node3` is not connected to the manager anymore (e.g. due to service down, or network issue).
 
 ## Run a task
 
@@ -58,19 +58,19 @@ All targeting modes are documented [here](/docs/advanced_guides/task_execution/t
 {{< /callout >}}
 
 ```sh {filename="command"}
-jack run <agent> <plugin:task> <arg1> <argN>
+jack run <node> <plugin.task> <arg1> <argN>
 ```
 
 ### One target
 
 ```sh {filename="example"}
-# Check the health of agent1
-$ jack run agent1 health:ping
+# Check the health of node1
+$ jack run node1 health.ping
 
 ```
 
 ```sh {filename="output"}
-agent1
+node1
 
 → output:
    true
@@ -79,24 +79,24 @@ agent1
 ### Multiple targets
 
 ```sh {filename="example"}
-# Execute the 'uptime' command on all agent matching 'agent*'
-$ jack run agent* cmd:run "uptime"
+# Execute the 'uptime' command on all node matching 'node*'
+$ jack run node* cmd.run "uptime"
 ```
 
 ```sh {filename="output"}
-agent1
+node1
 
 → output:
     |
        14:49:15 up  4:58,  0 user,  load average: 0.13, 0.52, 0.65
 
-agent2
+node2
 
 → output:
     |
        14:49:15 up  4:58,  0 user,  load average: 0.13, 0.52, 0.65
 
-agent3
+node3
 
 → output:
     |
@@ -115,16 +115,16 @@ jack results list
  Task results
 
 [✓] 1757515773331361206 - 2025-09-10 14:49:33
-    agent1
+    node1
 
 [✓] 1757515773331318817 - 2025-09-10 14:49:33
-    agent2
+    node2
 
 [✓] 1757515755520084702 - 2025-09-10 14:49:15
-    agent2
+    node2
 
 [✓] 1757515755520078922 - 2025-09-10 14:49:15
-    agent1
+    node1
 
 [✓] 1757515755519920865 - 2025-09-10 14:49:15
     1757515755520078922,1757515755520084702
@@ -144,10 +144,10 @@ $ jack results get 1757515755519920865
 ```sh {filename="output"}
  Request:
 
-→ Task: cmd:run
-→ Connected targets: agent2, agent1
+→ Task: cmd.run
+→ Connected targets: node2, node1
 
- Agent: agent1
+ Node: node1
 
 → groupID: 1757515755519920865
 → id: 1757515755520078922
@@ -155,7 +155,7 @@ $ jack results get 1757515755519920865
     |
        14:49:15 up  4:58,  0 user,  load average: 0.13, 0.52, 0.65
 
- Agent: agent2
+ Node: node2
 
 → groupID: 1757515755519920865
 → id: 1757515755520084702
@@ -171,16 +171,16 @@ $ jack results get 1757515755519920865
 ### List installed plugins
 
 ```sh {filename="command"}
-jack run <agent> plugins:list
+jack run <node> plugins.list
 ```
 
 ```sh {filename="example"}
-# List installed plugins on agent1
-$ jack run agent1 plugins:list
+# List installed plugins on node1
+$ jack run node1 plugins.list
 ```
 
 ```sh {filename="output"}
-agent1
+node1
 
 → output:
    - specs
@@ -191,24 +191,24 @@ agent1
 
 ### Install/update/remove plugins
 
-You can synchronize the plugins on the agent using, following `plugins.yaml` configuration on the manager.
+You can synchronize the plugins on the node using, following `plugins.yaml` configuration on the manager.
 
 It will:
-* Add new plugins not installed on the agent.
+* Add new plugins not installed on the node.
 * Update existing plugins if necessary.
 * Remove unwanted plugins.
 
 ```sh {filename="command"}
-jack run <agent> plugins:sync
+jack run <node> plugins.sync
 ```
 
 ```sh {filename="example"}
-# Sync plugins to agent1
-$ jack run agent1 plugins:sync
+# Sync plugins to node1
+$ jack run node1 plugins.sync
 ```
 
 ```sh {filename="output"}
-agent1
+node1
 
 → output:
     Added:
@@ -220,16 +220,16 @@ During sync, states can be: `Added`, `Deleted`, `Unchanged`, `Updated`.
 ### Get version of a plugin
 
 ```sh {filename="command"}
-jack run <agent> plugins:version
+jack run <node> plugins.version
 ```
 
 ```sh {filename="example"}
-# Get version information of the 'demo' plugin installed on agent1
-$ jack run agent1 plugins:version demo
+# Get version information of the 'demo' plugin installed on node1
+$ jack run node1 plugins.version demo
 ```
 
 ```sh {filename="output"}
-agent1
+node1
 
 → output:
     BuildTime: "2025-09-10T15:01:00Z"
@@ -241,16 +241,16 @@ agent1
 ### Print the help for a plugin
 
 ```sh {filename="command"}
-jack run <agent> plugins:help <plugin>
+jack run <node> plugins.help <plugin>
 ```
 
 ```sh {filename="example"}
-# Print the help of the 'demo' plugin installed on agent1
-$ jack run agent1 plugins:help demo
+# Print the help of the 'demo' plugin installed on node1
+$ jack run node1 plugins.help demo
 ```
 
 ```sh {filename="output"}
-agent1
+node1
 
 → output:
     demo: |
@@ -276,17 +276,17 @@ agent1
 ### Print the help for a task
 
 ```sh {filename="command"}
-jack run <agent> plugins:help <plugin:task>
+jack run <node> plugins.help <plugin.task>
 ```
 
 ```sh {filename="example"}
 # Print the help of the task 'configure_service'
-# from 'demo' plugin installed on agent1
-$ jack run agent1 plugins:help demo:configure_service
+# from 'demo' plugin installed on node1
+$ jack run node1 plugins.help demo:configure_service
 ```
 
 ```sh {filename="output"}
-agent1
+node1
 
 → output:
    configure_service: |+
@@ -297,7 +297,7 @@ agent1
        Configures a named service with regional settings and timeout controls.
 
      Usage:
-       jack run <target> demo:configure_service <serviceName>
+       jack run <target> demo.configure_service <serviceName>
 
      Arguments:
      serviceName  string   e.g. webserver-pro

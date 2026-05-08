@@ -3,27 +3,27 @@ title: 'Health monitoring (health)'
 weight: 3
 ---
 
-The `health` plugin provides essential monitoring and diagnostic capabilities for Jackadi agents.
+The `health` plugin provides essential monitoring and diagnostic capabilities for Jackadi nodes.
 
 ## Available tasks
 
-### health:ping
+### health.ping
 
 Perform a standard health check that goes through the normal task queue.
 
 #### Syntax
 ```sh
-jack run <agent> health:ping [timeout=<duration>]
+jack run <node> health.ping [timeout=<duration>]
 ```
 
 #### Example
 ```sh
-jack run agent1 health:ping
+jack run node1 health.ping
 ```
 
 #### Sample Output
 ```
-agent1
+node1
 
 → output:
     Status: healthy
@@ -35,31 +35,31 @@ agent1
     Last Seen: 2025-01-15T10:30:00Z
 ```
 
-The standard ping includes basic status, response time, system metrics, agent metadata, and task queue status.
+The standard ping includes basic status, response time, system metrics, node metadata, and task queue status.
 
-### health:instant-ping
+### health.instant-ping
 
 Perform an immediate health check that bypasses the task queue for faster response.
 
 #### Syntax
 ```sh
-jack run <agent> health:instant-ping [timeout=<duration>]
+jack run <node> health.instant-ping [timeout=<duration>]
 ```
 
 #### Example
 ```sh
-jack run agent1 health:instant-ping
+jack run node1 health.instant-ping
 ```
 
 #### Sample Output
 ```
-agent1
+node1
 
 → output:
     Status: healthy
     Response Time: 3ms
     Connection: active
-    Agent Version: v2.1.3
+    Node Version: v2.1.3
     Queue Status: 5 pending tasks
     Emergency Response: available
     Timestamp: 2025-01-15T10:30:00.123Z

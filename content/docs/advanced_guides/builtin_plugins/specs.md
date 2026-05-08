@@ -3,27 +3,27 @@ title: 'System specifications (specs)'
 weight: 4
 ---
 
-The `specs` plugin provides specs management for Jackadi agents.
+The `specs` plugin provides specs management for Jackadi nodes.
 
 ## Available tasks
 
-### specs:list
+### specs.list
 
-List all available specification profiles defined on the agent.
+List all available specification profiles defined on the node.
 
 #### Syntax
 ```sh
-jack run <agent> specs:list
+jack run <node> specs.list
 ```
 
 #### Example
 ```sh
-jack run agent1 specs:list
+jack run node1 specs.list
 ```
 
 #### Sample Output
 ```
-agent1
+node1
 
 → output:
     - demo
@@ -31,23 +31,23 @@ agent1
     - database-server
 ```
 
-### specs:all
+### specs.all
 
-Retrieve all specification data from all profiles defined on the agent.
+Retrieve all specification data from all profiles defined on the node.
 
 #### Syntax
 ```sh
-jack run <agent> specs:all
+jack run <node> specs.all
 ```
 
 #### Example
 ```sh
-jack run agent1 specs:all
+jack run node1 specs.all
 ```
 
 #### Sample Output
 ```yaml
-agent1
+node1
 
 → output:
     demo:
@@ -95,23 +95,23 @@ agent1
         total_packages: "2847"
 ```
 
-### specs:get
+### specs.get
 
 Retrieve specifications for a specific profile.
 
 #### Syntax
 ```sh
-jack run <agent> specs:get <profile_name>
+jack run <node> specs.get <profile_name>
 ```
 
 #### Example
 ```sh
-jack run agent1 specs:get demo
+jack run node1 specs.get demo
 ```
 
 #### Sample Output
 ```yaml
-agent1
+node1
 
 → output:
     hardware:

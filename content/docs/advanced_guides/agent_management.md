@@ -1,29 +1,29 @@
 ---
-title: 'Agent management'
+title: 'Node management'
 weight: 30
 ---
 
-## Agent states
+## Node states
 
-Agents in Jackadi can exist in one of three states:
+Nodes in Jackadi can exist in one of three states:
 
 | State | Description | Capabilities |
 |-------|-------------|--------------|
-| **Candidate** | The initial state when an agent first connects to the manager, not yet approved. | Cannot execute tasks, awaits approval. |
-| **Accepted** | Agents that have been approved and can execute tasks. | Can receive and execute tasks, full system access. |
-| **Rejected** | Agents that have been denied access to the system, e.g. duplicate agents or manually rejected. | Cannot connect or execute tasks. |
+| **Candidate** | The initial state when an node first connects to the manager, not yet approved. | Cannot execute tasks, awaits approval. |
+| **Accepted** | Nodes that have been approved and can execute tasks. | Can receive and execute tasks, full system access. |
+| **Rejected** | Nodes that have been denied access to the system, e.g. duplicate nodes or manually rejected. | Cannot connect or execute tasks. |
 
-## List agents
+## List nodes
 
 ```sh {filename="command"}
-jack agents list
+jack nodes list
 ```
 
 ```sh {filename="output"}
 Accepted
 
- • agent1
- • agent2
+ • node1
+ • node2
 
  Candidates
 
@@ -34,14 +34,14 @@ Accepted
 ### Detailed view
 
 ```sh {filename="command"}
-jack agents list --verbose
+jack nodes list --verbose
 ```
 
 ```sh {filename="output"}
 Accepted
 
- • agent1 (172.18.0.3 MIICIjANBgkqhkiG9w...EJEX0CAwEAAQ==)
- • agent2 (172.18.0.2 MIICIjANBgkqhkiG9w...HWGG0CAwEAAQ==)
+ • node1 (172.18.0.3 MIICIjANBgkqhkiG9w...EJEX0CAwEAAQ==)
+ • node2 (172.18.0.2 MIICIjANBgkqhkiG9w...HWGG0CAwEAAQ==)
 
  Candidates
 
@@ -52,14 +52,14 @@ Accepted
 ### JSON output
 
 ```sh {filename="command"}
-jack agents list --json
+jack nodes list --json
 ```
 
 ```sh {filename="output"}
 {
    "Accepted": [
       {
-         "Id": "agent1",
+         "Id": "node1",
          "Address": "172.18.0.3",
          "Certificate": "MIICIjANBgkqhkiG9w...EJEX0CAwEAAQ==",
          "IsConnected": true,
@@ -74,7 +74,7 @@ jack agents list --json
          "IsActive": true
       },
       {
-         "Id": "agent2",
+         "Id": "node2",
          "Address": "172.18.0.2",
          "Certificate": "MIICIjANBgkqhkiG9w...HWGG0CAwEAAQ==",
          "IsConnected": true,
@@ -94,115 +94,115 @@ jack agents list --json
 }
 ```
 
-## Check agent health
+## Check node health
 
 ```sh {filename="command"}
-jack agents health
+jack nodes health
 ```
 
 ```sh {filename="output"}
-Agents
+Nodes
 
- • agent1 (connected, active)
- • agent2 (connected, active)
+ • node1 (connected, active)
+ • node2 (connected, active)
 ```
 
-* `agent1` is connected and had recent activity (e.g. a task has been executed).
-* `agent2` is connected and did not have any recent activity.
-* `agent3` is not connected to the manager anymore (e.g. due to service down, or network issue).
+* `node1` is connected and had recent activity (e.g. a task has been executed).
+* `node2` is connected and did not have any recent activity.
+* `node3` is not connected to the manager anymore (e.g. due to service down, or network issue).
 
 ### Detailed health view
 
 ```sh {filename="command"}
-jack agents health --verbose
+jack nodes health --verbose
 ```
 
 ```sh {filename="output"}
-Agents
+Nodes
 
- • agent1
+ • node1
    • state: connected, active
    • connected since: September 11, 2025 at 08:13 UTC
    • last active: September 11, 2025 at 17:02 UTC
- • agent2
+ • node2
    • state: connected, active
    • connected since: September 11, 2025 at 08:13 UTC
    • last active: September 11, 2025 at 17:02 UTC
 ```
 
-## Accept agents
+## Accept nodes
 
 ```sh {filename="command"}
-jack agents accept <agent_id>
+jack nodes accept <node_id>
 ```
 
 ```sh {filename="example"}
-# Accept a candidate agent
-$ jack agents accept agent2
+# Accept a candidate node
+$ jack nodes accept node2
 ```
 
 ```sh {filename="output"}
-agent registered: id:"agent2"  address:"172.18.0.2"  certificate:"MIICIjANBgkqhkiG9w...HWGG0CAwEAAQ=="
+node registered: id:"node2"  address:"172.18.0.2"  certificate:"MIICIjANBgkqhkiG9w...HWGG0CAwEAAQ=="
 ```
 
 ### Accept with specific configuration
 
 ```sh {filename="command"}
-jack agents accept <agent_id> --address <address> --certificate <cert>
+jack nodes accept <node_id> --address <address> --certificate <cert>
 ```
 
 ```sh {filename="example"}
-# Accept agent with specific address and certificate
-$ jack agents accept agent2 --address "192.168.1.101:8080" --certificate "agent2.pem"
+# Accept node with specific address and certificate
+$ jack nodes accept node2 --address "192.168.1.101:8080" --certificate "node2.pem"
 ```
 
 ```sh {filename="output"}
-agent registered: id:"agent2"  address:"192.168.1.101:8080"  certificate:"MIICIjANBgkqhkiG9w...HWGG0CAwEAAQ=="
+node registered: id:"node2"  address:"192.168.1.101:8080"  certificate:"MIICIjANBgkqhkiG9w...HWGG0CAwEAAQ=="
 ```
 
-## Reject agents
+## Reject nodes
 
 ```sh {filename="command"}
-jack agents reject <agent_id>
+jack nodes reject <node_id>
 ```
 
 ```sh {filename="example"}
-# Reject a candidate agent
-$ jack agents reject agent5
+# Reject a candidate node
+$ jack nodes reject node5
 ```
 
 ```sh {filename="output"}
-agent rejected: agent2
+node rejected: node2
 ```
 
-## Remove agents
+## Remove nodes
 
 ```sh {filename="command"}
-jack agents remove <agent_id>
+jack nodes remove <node_id>
 ```
 
 ```sh {filename="example"}
-# Remove an accepted agent
-$ jack agents remove agent1
+# Remove an accepted node
+$ jack nodes remove node1
 ```
 
 ```sh {filename="output"}
-agent removed: agent2
+node removed: node2
 ```
 
-## Force accept rejected agents
+## Force accept rejected nodes
 
 ```sh {filename="command"}
-jack agents accept <agent_id> --force
+jack nodes accept <node_id> --force
 ```
 
 ```sh {filename="example"}
-# Force accept a previously rejected agent
-$ jack agents accept agent4 --force
+# Force accept a previously rejected node
+$ jack nodes accept node4 --force
 ```
 
 ```sh {filename="output"}
-agent registered: id:"agent2"  address:"172.18.0.2"  certificate:"MIICIjANBgkqhkiG9w...HWGG0CAwEAAQ=="
+node registered: id:"node2"  address:"172.18.0.2"  certificate:"MIICIjANBgkqhkiG9w...HWGG0CAwEAAQ=="
 ```
 
 ## Auto-acceptance
@@ -210,32 +210,32 @@ agent registered: id:"agent2"  address:"172.18.0.2"  certificate:"MIICIjANBgkqhk
 For development or trusted environments, you can enable auto-acceptance on the manager:
 
 ```sh {filename="command"}
-manager --auto-accept-agent
+manager --auto-accept-node
 ```
 
-This automatically accepts new agents when they connect without requiring manual approval.
+This automatically accepts new nodes when they connect without requiring manual approval.
 
 ## Security considerations
 
-1. **Production environments**: Disable auto-accept and manually review all agent connection requests.
-2. **Rogue agent protection**: Jackadi prevents multiple agents with the same ID - duplicates are automatically rejected.
-3. **TLS certificates**: Use certificates for secure agent authentication in production.
-4. **Regular auditing**: Monitor agent lists regularly to ensure only authorized agents are connected.
+1. **Production environments**: Disable auto-accept and manually review all node connection requests.
+2. **Rogue node protection**: Jackadi prevents multiple nodes with the same ID - duplicates are automatically rejected.
+3. **TLS certificates**: Use certificates for secure node authentication in production.
+4. **Regular auditing**: Monitor node lists regularly to ensure only authorized nodes are connected.
 
-## Agent workflow example
+## Node workflow example
 
 ```sh {filename="example"}
-# 1. Start an agent (from agent machine)
-$ agent --id="web-server-01" --manager-address="manager.example.com:8080"
+# 1. Start an node (from node machine)
+$ node --id="web-server-01" --manager-address="manager.example.com:8080"
 
 # 2. Check for new candidates (from manager machine)
-$ jack agents list
+$ jack nodes list
 ```
 
 ```sh {filename="output"}
 Accepted
 
- • agent1
+ • node1
 
  Candidates
 
@@ -245,22 +245,22 @@ Accepted
 ```
 
 ```sh {filename="example"}
-# 3. Accept the new agent
-$ jack agents accept web-server-01
+# 3. Accept the new node
+$ jack nodes accept web-server-01
 ```
 
 ```sh {filename="output"}
-agent registered: id:"web-server-01"  address:"172.18.0.4"  certificate:"MIICIjANBgkqhkiG9w...HWGG0CAwEAAQ=="
+node registered: id:"web-server-01"  address:"172.18.0.4"  certificate:"MIICIjANBgkqhkiG9w...HWGG0CAwEAAQ=="
 ```
 
 ```sh {filename="example"}
-# 4. Verify the agent is now accepted and connected
-$ jack agents health
+# 4. Verify the node is now accepted and connected
+$ jack nodes health
 ```
 
 ```sh {filename="output"}
-Agents
+Nodes
 
- • agent1 (connected, active)
+ • node1 (connected, active)
  • web-server-01 (connected, inactive)
 ```

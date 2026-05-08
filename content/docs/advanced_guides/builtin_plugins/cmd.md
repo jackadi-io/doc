@@ -7,23 +7,23 @@ The `cmd` allows you to run shell commands remotely and capture their output.
 
 ## Available tasks
 
-### cmd:run
+### cmd.run
 
-Execute a shell command on a remote agent and return the complete output.
+Execute a shell command on a remote node and return the complete output.
 
 #### Syntax
 ```sh
-jack run <agent> cmd:run "<command>" [options...]
+jack run <node> cmd.run "<command>" [options...]
 ```
 
 #### Example
 ```sh
-jack run agent1 cmd:run "ls -la /tmp"
+jack run node1 cmd.run "ls -la /tmp"
 ```
 
 #### Sample Output
 ```
-agent1
+node1
 
 → output:
     |

@@ -15,25 +15,25 @@ jack results list
 Task results
 
 [✓] 1757611904715915620 * 2025-09-11 17:31:44
-    agent1
+    node1
 
 [✓] 1757611904715894360 * 2025-09-11 17:31:44
-    agent2
+    node2
 
 [✓] 1757611904715808178 * 2025-09-11 17:31:44
     1757611904715894360,1757611904715915620
 
 [✓] 1757611900836610128 * 2025-09-11 17:31:40
-    agent1
+    node1
 
 [✓] 1757611900836582446 * 2025-09-11 17:31:40
-    agent2
+    node2
 
 [✓] 1757611900836474724 * 2025-09-11 17:31:40
     1757611900836610128,1757611900836582446
 
 [✓] 1757611894020555151 * 2025-09-11 17:31:34
-    agent1
+    node1
 
 [✓] 1757611894020470092 * 2025-09-11 17:31:34
     1757611894020555151
@@ -44,7 +44,7 @@ Showing 8 results (limit: 100, offset: 0)
 By default, this shows up to 100 of the most recent results with:
 * **Result ID**: Unique identifier for each task execution
 * **Timestamp**: When the task completed
-* **Agent/Group**: Either the agent that executed the task, or for group results, the comma-separated list of individual result IDs
+* **Node/Group**: Either the node that executed the task, or for group results, the comma-separated list of individual result IDs
 * **Status indicator**: `[✓]` for successful completion
 
 ## Datetime filtering
@@ -62,21 +62,21 @@ jack results list --from "2025-09-11 17:30:00"
 jack results list --from "2025-09-11 17:30:00" --to "2025-09-11 17:32:00"
 ```
 
-## Agent filtering
+## Node filtering
 
-Filter results from specific agents using the `--targets` option:
+Filter results from specific nodes using the `--targets` option:
 
 ```sh
-# Single agent
-jack results list --targets agent1
+# Single node
+jack results list --targets node1
 
-# Multiple agents (comma-separated)
-jack results list --targets agent1,agent2,agent3
+# Multiple nodes (comma-separated)
+jack results list --targets node1,node2,node3
 ```
 
 The `--targets` option accepts:
-- Single agent ID: `--targets agent1`
-- Multiple agent IDs: `--targets agent1,agent2,agent3`
+- Single node ID: `--targets node1`
+- Multiple node IDs: `--targets node1,node2,node3`
 
 ## Pagination
 

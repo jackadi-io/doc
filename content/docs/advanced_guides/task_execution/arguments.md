@@ -12,7 +12,7 @@ Jackadi supports different ways to pass arguments to tasks:
 Positional arguments are passed in order after the task name:
 
 ```sh
-jack run agent1 myplugin:task2 John 30
+jack run node1 myplugin.task2 John 30
 ```
 
 In this example:
@@ -26,7 +26,7 @@ The task receives these arguments in the order they are provided.
 Named arguments use the `key=value` syntax:
 
 ```sh
-jack run agent1 myplugin:task3 name="John" age=30
+jack run node1 myplugin.task3 name="John" age=30
 ```
 
 This passes:
@@ -40,7 +40,7 @@ These key-value pairs are passed to the task argument implementing `sdk.Option`.
 You can combine positional and named arguments:
 
 ```sh
-jack run agent1 myplugin:task4 John age=30
+jack run node1 myplugin.task4 John age=30
 ```
 
 This passes:

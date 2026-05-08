@@ -28,7 +28,7 @@ func UpgradeSystem(ctx context.Context, options *UpgradeOptions) (map[string]any
 When calling the task, the key can be either be `DryRun` or `dry-run`:
 
 ```sh {filename="task with options using jackadi tags"}
-jack run agent1 upgrade_system DryRun=true
+jack run node1 upgrade_system DryRun=true
 {
   "message": "Dry run completed - no actual changes made"
   "status": "dry-run-completed",
@@ -41,7 +41,7 @@ jack run agent1 upgrade_system DryRun=true
 ```
 
 ```sh {filename="task with options using jackadi tags"}
-jack run agent1 upgrade_system dry-run=true
+jack run node1 upgrade_system dry-run=true
 {
   "message": "Dry run completed - no actual changes made"
   "status": "dry-run-completed",
@@ -73,7 +73,7 @@ func FindUserByEmail(email string) (*User, error) {
 When calling this task, the keys of the output will be customized:
 
 ```sh
-jack run agent1 get_users
+jack run node1 get_users
 [
   {
     "id": 1,

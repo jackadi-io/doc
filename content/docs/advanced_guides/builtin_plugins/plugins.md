@@ -3,27 +3,27 @@ title: 'Plugin management (plugins)'
 weight: 1
 ---
 
-The `plugins` plugin provides essential functionality for managing plugins on Jackadi agents.
+The `plugins` plugin provides essential functionality for managing plugins on Jackadi nodes.
 
 ## Available tasks
 
-### plugins:list
+### plugins.list
 
-List all available plugins on an agent.
+List all available plugins on an node.
 
 #### Syntax
 ```sh
-jack run <agent> plugins:list
+jack run <node> plugins.list
 ```
 
 #### Example
 ```sh
-jack run agent1 plugins:list
+jack run node1 plugins.list
 ```
 
 #### Sample Output
 ```
-agent1
+node1
 
 → output:
     - cmd
@@ -32,29 +32,29 @@ agent1
     - plugins
 ```
 
-### plugins:help
+### plugins.help
 
 Get help documentation for plugins and tasks.
 
 #### Syntax
 ```sh
 # Get help for a plugin
-jack run <agent> plugins:help <plugin_name>
+jack run <node> plugins.help <plugin_name>
 
 # Get help for a specific task
-jack run <agent> plugins:help <plugin_name:task_name>
+jack run <node> plugins.help <plugin_name.task_name>
 ```
 
 #### Examples
 
 **Plugin-level help:**
 ```sh
-jack run agent1 plugins:help cmd
+jack run node1 plugins.help cmd
 ```
 
 Sample output:
 ```
-agent1
+node1
 
 → output:
     cmd: |
@@ -63,12 +63,12 @@ agent1
 
 **Task-level help:**
 ```sh
-jack run agent1 plugins:help cmd:run
+jack run node1 plugins.help cmd.run
 ```
 
 Sample output:
 ```
-agent1
+node1
 
 → output:
     Task: cmd:run
@@ -79,23 +79,23 @@ agent1
       shell (string, optional): Shell to use (default: /bin/sh)
 ```
 
-### plugins:version
+### plugins.version
 
 Get detailed version information for a specific plugin.
 
 #### Syntax
 ```sh
-jack run <agent> plugins:version <plugin_name>
+jack run <node> plugins.version <plugin_name>
 ```
 
 #### Example
 ```sh
-jack run agent1 plugins:version cmd
+jack run node1 plugins.version cmd
 ```
 
 #### Sample Output
 ```
-agent1
+node1
 
 → output:
     Plugin: cmd
@@ -104,18 +104,18 @@ agent1
     Platform: linux/amd64
 ```
 
-### plugins:sync
+### plugins.sync
 
-You can synchronize the plugins on the agent using, following `plugins.yaml` configuration on the manager.
+You can synchronize the plugins on the node using, following `plugins.yaml` configuration on the manager.
 
 It will:
-* Add new plugins not installed on the agent.
+* Add new plugins not installed on the node.
 * Update existing plugins if necessary.
 * Remove unwanted plugins.
 
 #### Syntax
 ```sh
-jack run <agent> plugins:sync
+jack run <node> plugins.sync
 ```
 
 #### Lock Mode
@@ -123,12 +123,12 @@ This task automatically uses `--lock-mode exclusive` because it modifies the plu
 
 #### Example
 ```sh
-jack run agent1 plugins:sync
+jack run node1 plugins.sync
 ```
 
 #### Sample Output
 ```
-agent1
+node1
 
 → output:
     Starting plugin synchronization...

@@ -7,7 +7,7 @@ weight: 4
 
 Jackadi comes up with few built-in plugins:
 * `cmd`: tasks to run shell commands.
-* `health`: tasks to check the health of an agent (ping).
+* `health`: tasks to check the health of an node (ping).
 * `plugins`: manage and get info about plugins.
 * `specs`: list and get specs.
 
@@ -46,7 +46,7 @@ func main() {
 
 Usage:
 ```sh {filename="command"}
-jack run <agent> demo:hello
+jack run <node> demo.hello
 ```
 
 For more details, check out the advanced [task writing guide](TODO).
@@ -82,15 +82,15 @@ func main() {
 }
 ```
 
-Once declared, they are regularly collected by the agent (every 60s by default).
+Once declared, they are regularly collected by the node (every 60s by default).
 
 Usage:
 ```sh {filename="commands"}
-jack run <agent> specs:list
-jack run <agent> specs:all
+jack run <node> specs.list
+jack run <node> specs.all
 
 # we can get all specs provided system-info
-jack run <agent> specs:get system-info
+jack run <node> specs.get system-info
 # or get a specific field
-jack run <agent> specs:get system-info.distribution
+jack run <node> specs.get system-info.distribution
 ```

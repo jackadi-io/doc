@@ -39,7 +39,7 @@ Key principles:
 
 <img src="/images/jackadi-overview.svg" />
 
-Agents are Jackadi clients installed on the nodes. They are connected to a manager via persistent bidirectional gRPC connections.
+Nodes are Jackadi clients installed on the nodes. They are connected to a manager via persistent bidirectional gRPC connections.
 
 Jackadi features a simple plugin architecture where all tasks and specs collectors are implemented as pure Go functions. The plugin system is built on top of [hashicorp/go-plugin](https://github.com/hashicorp/go-plugin/), and is made intuitive using a simple and easy to use SDK.
 
@@ -53,21 +53,21 @@ By default, all executed task are recorded in [BadgerDB](https://github.com/hype
 # Start the manager
 manager --mtls=false
 
-# Start an agent
-agent --id="agent1" --mtls=false
+# Start an node
+node --id="node1" --mtls=false
 
-# Accept the agent connection (if not using auto-accept)
-jack agents list
-jack agents accept agent1
+# Accept the node connection (if not using auto-accept)
+jack nodes list
+jack nodes accept node1
 
-# The agent should be now in "accepted" list
-jack agents list
+# The node should be now in "accepted" list
+jack nodes list
 
-# Check agents health
-jack agents health
+# Check nodes health
+jack nodes health
 
 # Run a task
-jack run agent1 cmd:run "echo hello"
+jack run node1 cmd.run "echo hello"
 ```
 
 ### Write my first plugin
@@ -108,14 +108,14 @@ Then configure `/etc/jackadi/plugins.yaml` file:
   - tour
 ```
 
-#### Synchronize the plugin to the agent
+#### Synchronize the plugin to the node
 ```sh
-jack run agent1 plugins:sync
+jack run node1 plugins.sync
 ```
 
 #### Run the plugin
 ```sh
-jack run agent1 tour:hello
+jack run node1 tour.hello
 ```
 
 {{% /steps %}}

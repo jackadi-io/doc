@@ -13,9 +13,9 @@ weight: 2
 systemctl enable --now jackadi-manager
 systemctl status jackadi-manager
 
-# for the agent
-systemctl enable --now jackadi-agent
-systemctl status jackadi-agent
+# for the node
+systemctl enable --now jackadi-node
+systemctl status jackadi-node
 ```
 
 ## Manual installation
@@ -64,9 +64,9 @@ Once everything is installed, you should have the following directory layout:
     └── plugin2
 ```
 
-``` {filename="agent"}
+``` {filename="node"}
 /etc/jackadi/
-└── agent.yaml
+└── node.yaml
 
 /var/lib/jackadi/
 └── database/

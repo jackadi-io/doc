@@ -4,7 +4,7 @@ weight: 3
 toc: false
 ---
 
-{{< tabs items="Manager,Agent" >}}
+{{< tabs items="Manager,Node" >}}
   {{< tab >}}
 
 **Test configuration**
@@ -14,7 +14,7 @@ This minimal configuration can be used to ease testing in lab.
 Not recommended for production.
 
 ```yaml {filename="/etc/jackadi/manager.yaml"}
-auto-accept-agent: true  # avoids having to accept agents manually
+auto-accept-node: true  # avoids having to accept nodes manually
 mtls:
     enabled: false  # in development, mTLS authentication can be skipped
 ```
@@ -27,7 +27,7 @@ address: "0.0.0.0"
 
 # auto acceptation should be disabled,
 # unless you have a strong pki management
-auto-accept-agent: false
+auto-accept-node: false
 
 # mTLS is critical for production to both
 # authenticate and encrypt communication
@@ -35,7 +35,7 @@ mtls:
     enabled: true
     key: "/etc/jackadi/certs/manager.key"
     cert: "/etc/jackadi/certs/manager.crt"
-    agent-ca-cert: "/etc/jackadi/certs/ca.crt"
+    node-ca-cert: "/etc/jackadi/certs/ca.crt"
 ```
   {{< /tab >}}
 
@@ -43,7 +43,7 @@ mtls:
 
 **Test configuration**
 
-```yaml {filename="/etc/jackadi/agent.yaml"}
+```yaml {filename="/etc/jackadi/node.yaml"}
 manager-address: "192.0.2.1"
 mtls:
     enabled: false
@@ -51,15 +51,15 @@ mtls:
 
 **Minimal recommended configuration for production**
 
-```yaml {filename="/etc/jackadi/agent.yaml"}
+```yaml {filename="/etc/jackadi/node.yaml"}
 manager-address: "192.0.2.1"
 
 # mTLS is critical for production to both
 # authenticate and encrypt communication
 mtls:
     enabled: true
-    key: "/etc/jackadi/certs/agent.key"
-    cert: "/etc/jackadi/certs/agent.crt"
+    key: "/etc/jackadi/certs/node.key"
+    cert: "/etc/jackadi/certs/node.crt"
     manager-ca-cert: "/etc/jackadi/certs/ca.crt"
 ```
   {{< /tab >}}
